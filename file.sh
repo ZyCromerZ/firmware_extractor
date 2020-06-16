@@ -8,5 +8,5 @@ git init && \
 git add . && git commit -s -m "miui_BEGONIA_20.6.15_c85e084b31_10.0" && \
 git checkout -b miui_BEGONIA_20.6.15_c85e084b31_10.0 && \
 git branch -D master && \
-git remote add origin https://$githubKey@github.com/ZyCromerZ/begonia_files.git && \
+git remote add origin $githubKey@github.com:ZyCromerZ/begonia_files.git && \
 git push --all origin -f
