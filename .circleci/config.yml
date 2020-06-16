@@ -1,0 +1,25 @@
+version: 2.1
+jobs:
+  compile:
+   docker:
+      - image: ubuntu:20.04
+   steps:
+      - run:
+          command: |
+            apt-get -y update && apt-get -y upgrade && apt-get -y install ca-certificates
+      - run:
+          command: |
+            export DEBIAN_FRONTEND=noninteractive && apt-get -y update && apt-get -y upgrade && apt-get -y install tzdata git git-lfs unace unrar zip unzip p7zip-full p7zip-rar sharutils rar uudeview mpack arj cabextract file-roller rename liblzma-dev python-pip brotli lz4
+            pip install backports.lzma protobuf pycrypto
+            ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
+            dpkg-reconfigure --frontend noninteractive tzdata
+            git config --global user.name "ZyCromerZ"
+            git config --global user.email "neetroid97@gmail.com"
+            git clone https://$githubKey@github.com/ZyCromerZ/firmware_extractor.git firmware_extractor
+            cd firmware_extractor
+            source file.sh
+workflows:
+  version: 2.1
+  cooking:
+    jobs:
+      - compile
